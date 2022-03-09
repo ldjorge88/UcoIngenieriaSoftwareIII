@@ -5,20 +5,19 @@ import co.com.edu.uco.ing.software.project.transports.domain.port.OwnerRepositor
 import org.springframework.stereotype.Service;
 
 @Service
-public class SaveOwnerService {
+public class EditOwnerService {
 
-  private static final String EXISTS_MESSAGE = "Ya existe el propietario con los datos ingresados";
+  private static final String ERROR_MESSAGE = "El propietario con los datos ingresados no existe en la la fuente de información";
   private final OwnerRepository ownerRepository;
 
-  public SaveOwnerService(OwnerRepository ownerRepository) {
+  public EditOwnerService(OwnerRepository ownerRepository) {
     this.ownerRepository = ownerRepository;
   }
 
   public long execute(Owner owner) {
     if (this.ownerRepository.exists(owner)) {
-      throw new IllegalStateException(EXISTS_MESSAGE);
+      throw new IllegalStateException(ERROR_MESSAGE);
     }
     return this.ownerRepository.save(owner);
   }
-
 }

@@ -7,7 +7,8 @@ import java.util.List;
 public interface OwnerRepository {
 
   List<Owner> getList();
-  Owner findById(Long id);
+  Owner findByDocument(int id);
   Long save(Owner owner);
   boolean exists(Owner owner);
+  Long delete(Owner owner);
 }
